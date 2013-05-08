@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function dcww-may14_menu() {
+
+  $items['dcww/hello-world'] = array(
+    'title' => 'Menu Example',
+    'description' => 'Simplest page output menu hook',
+    'page callback' => '_menu_example_basic_instructions',
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
+
+}
+
+/**
+ * Page callback for simple page output.
+ *
+ * @param $content
+ *   Some content passed in.
+ */
+function _dcww-may14_hello_world($content = NULL) {
+
+  $base_content = t('Hello World!!');
+  return '<h1>' . $base_content . '</h1>' . $content;
+
+}

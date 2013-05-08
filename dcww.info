@@ -1,0 +1,5 @@
+name = DCWW May14th 
+description = Collection of example modules for DCWW presentation on building drupal modules
+package = Example modules
+core = 7.x
+
