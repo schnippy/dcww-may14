@@ -1,0 +1,30 @@
+<?php 
+
+/**
+ * Implements hook_permission().
+ */
+function dcww_js_node_permission() {
+  return array(
+    'view unapproved comments' => array(
+      'title' => t('View unapproved comments'),
+    ),
+    'only if i say so' => array(
+      'title' => t(''),
+    ),
+    'view unapproved comments' => array(
+      'title' => t('View unapproved comments'),
+    ),
+    'view flagged comments' => array(
+      'title' => t('View flagged comments'),
+    ),
+  );
+}
+
+/**
+* Implements hook_preprocess_node().
+*/
+function dcww_js_node_preprocess_node(&$vars) {
+
+  print_r($vars);
+
+}
