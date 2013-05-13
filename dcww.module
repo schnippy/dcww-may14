@@ -3,15 +3,22 @@
 /**
  * Implements hook_menu().
  */
-function dcww-may14_menu() {
+function dcww_menu() {
 
   $items['dcww/hello-world'] = array(
     'title' => 'Menu Example',
     'description' => 'Simplest page output menu hook',
-    'page callback' => '_menu_example_basic_instructions',
+    'page callback' => '_dcww_hello_world',
     'access callback' => TRUE,
     'expanded' => TRUE,
   );
+
+  $items['dcww/random'] = array(
+    'page callback' => '_dcww_random_node',
+    'access callback' => TRUE,
+  );
+
+  return $items;
 
 }
 
@@ -21,9 +28,19 @@ function dcww-may14_menu() {
  * @param $content
  *   Some content passed in.
  */
-function _dcww-may14_hello_world($content = NULL) {
+function _dcww_hello_world($content = NULL) {
 
   $base_content = t('Hello World!!');
   return '<h1>' . $base_content . '</h1>' . $content;
+
+}
+
+function _dcww_random_node() { 
+
+  $result = db_query("SELECT nid FROM {node} WHERE type = :type", array(':type' => 'page'));
+
+  $row = $result->fetchAssoc();
+
+  drupal_goto("node/".$row["nid"]);
 
 }
