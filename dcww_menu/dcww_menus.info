@@ -1,0 +1,4 @@
+name = 5. DCWW Menus Example
+description = Module to demonstrate hook_menu()
+core = 7.x
+package = DCWW

@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function dcww_menus_menu() {
+
+  $items['dcww/hello-world'] = array(
+    'title' => 'Menu Example',
+    'description' => 'Simplest page output menu hook',
+    'page callback' => '_dcww_hello_world',
+    'access callback' => TRUE,
+  );
+
+  $items['dcww/random'] = array(
+    'page callback' => '_dcww_random_node',
+    'access callback' => TRUE,
+  );
+
+  $items['dcww/bill-murray'] = array(
+    'title' => 'Bill Murray',
+    'page callback' => '_dcww_output_bill', 
+    'page arguments' => array(2, 3),
+    //'access arguments' => array('access content'),
+    'access callback' => TRUE,
+    'weight' => 10,
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for simple page output.
+ *
+ * @param $content
+ *   Some content passed in.
+ */
+function _dcww_hello_world($content = NULL) {
+
+  $base_content = t('Hello World!!');
+  return '<h1>' . $base_content . '</h1>' . $content;
+
+}
+
+/**
+ * Page callback for random node
+ *
+ */
+function _dcww_random_node() { 
+
+  $result = db_query("SELECT nid FROM {node} WHERE type = :type order by RAND()", array(':type' => 'page'));
+
+  $row = $result->fetchAssoc();
+
+  drupal_goto("node/".$row["nid"]);
+
+}
+
+/**
+ * Page callback for random node
+ *
+ */
+function _dcww_output_bill($height = 400, $width = 400) {
+
+  $content = "<img src='http://fillmurray.com/$height/$width'>";
+
+  return $content;
+
+}
