@@ -1,4 +1,4 @@
-name = DCWW Javascript Node
-description = Module to demonstrate implementation of node_preprocess
+name = 3. DCWW Javascript Node
+description = Module to demonstrate implementation of node_preprocess & hook permissions
 core = 7.x
 package = DCWW

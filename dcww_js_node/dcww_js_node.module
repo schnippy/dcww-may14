@@ -5,17 +5,11 @@
  */
 function dcww_js_node_permission() {
   return array(
-    'view unapproved comments' => array(
-      'title' => t('View unapproved comments'),
+    'access cornify' => array(
+      'title' => t('Access cornify'),
     ),
-    'only if i say so' => array(
-      'title' => t(''),
-    ),
-    'view unapproved comments' => array(
-      'title' => t('View unapproved comments'),
-    ),
-    'view flagged comments' => array(
-      'title' => t('View flagged comments'),
+    'i say so' => array(
+      'title' => t('Only if I say so'),
     ),
   );
 }
@@ -25,6 +19,16 @@ function dcww_js_node_permission() {
 */
 function dcww_js_node_preprocess_node(&$vars) {
 
-  print_r($vars);
+  //print_r($vars);
+
+  if ($vars["type"] == "article") { 
+    if (user_access("access cornify") && user_access("i say so")) {
+
+	drupal_add_js(drupal_get_path("module","dcww_js")."/cornify/cornify.js");
+	drupal_add_js(drupal_get_path("module","dcww_js")."/cornify/cornifykeys.js");
+
+    }
+	
+  }
 
 }
