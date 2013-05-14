@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ * 
+ * Prepares the contents of the block.
+ */
+function dcww_blocks_block_info() {
+
+  $blocks['daily_show_block'] = array(
+    'info' => t('Output block of Daily Show Tweets'), 
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+    //'status' => 1,
+    //'region' => 'sidebar'
+  );
+
+  return $blocks;
+
+}
+
+/**
+ * Implements hook_block_view().
+ * 
+ * Prepares the contents of the block.
+ */
+function dcww_blocks_block_view($delta = '') {
+
+  switch($delta){
+
+    case 'daily_show_block':
+
+      $block['subject'] = t('Sweet Tweets');
+
+$twitter = <<<EOF
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+EOF;
+
+      $block['content'] = $twitter; 
+
+      break;
+
+   }
+ 
+   return $block;
+
+}

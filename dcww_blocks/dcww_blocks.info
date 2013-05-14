@@ -1,0 +1,4 @@
+name = 4. DCWW Block Example
+description = Module to demonstrate hook_block()
+core = 7.x
+package = DCWW
